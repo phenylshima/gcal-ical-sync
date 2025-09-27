@@ -1,0 +1,29 @@
+{
+  "name": "gcal-ical-sync",
+  "version": "1.0.0",
+  "description": "Google Apps Script application to sync iCal files with Google Calendar",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "rollup -c",
+    "push": "clasp push",
+    "deploy": "npm run build && clasp push",
+    "format": "prettier -w ."
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.5.0",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@types/google-apps-script": "^2.0.4",
+    "rollup": "^4.52.2",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.28.3",
+    "@rollup/plugin-babel": "^6.0.4",
+    "ical.js": "^2.2.1",
+    "prettier": "^3.6.2",
+    "rollup-plugin-copy": "^3.5.0"
+  }
+}
