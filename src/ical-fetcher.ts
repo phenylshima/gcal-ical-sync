@@ -5,9 +5,9 @@ export class ICalFetcher {
   /**
    * 指定されたURLからiCalデータを取得する
    * @param url - iCalファイルのURL
-   * @returns iCal形式の文字列データ
+   * @returns iCal形式の文字列データ、またはnull（データがない場合）
    */
-  static async fetchICalData(url: string): Promise<string> {
+  static async fetchICalData(url: string): Promise<string | null> {
     try {
       Logger.log(`Fetching iCal data from: ${url}`);
 
@@ -28,6 +28,10 @@ export class ICalFetcher {
           `Successfully fetched iCal data (${content.length} characters)`,
         );
         return content;
+      } else if (responseCode == 404) {
+        // 予定がないとき，UTASは404を返すので，空文字列を返す
+        Logger.log(`No iCal data found at ${url} (HTTP 404)`);
+        return null;
       } else {
         throw new Error(`HTTP ${responseCode}: Failed to fetch iCal data`);
       }

@@ -32,7 +32,7 @@ async function syncICalToGoogleCalendar(): Promise<void> {
     const iCalData = await ICalFetcher.fetchICalData(config.iCalUrl);
 
     // iCalデータをパース
-    const events = ICalParser.parseEvents(iCalData);
+    const events = iCalData ? ICalParser.parseEvents(iCalData) : [];
     Logger.log(`Parsed ${events.length} events from iCal data`);
 
     // Googleカレンダーと同期
